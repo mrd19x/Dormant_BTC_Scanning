@@ -1,0 +1,6 @@
+pycrptodome
+bech32
+base58
+coincurve
+hashlib
+mmap

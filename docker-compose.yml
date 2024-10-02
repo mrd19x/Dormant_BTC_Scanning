@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  btc_scanner:
+    build:
+      context: .  # Gunakan Dockerfile yang ada di direktori saat ini
+    container_name: btc_scanner
+    volumes:
+      - ./data:/app/data  # Mount folder data di host ke /app/data di dalam container
+    deploy:
+      resources:
+        limits:
+          cpus: '15.0'  # Alokasikan 15 core CPU
+    command: bash -c "python -m ensurepip --upgrade && pip install -r requirements.txt && python3 scanning.py"
