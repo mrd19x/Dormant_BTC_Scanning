@@ -1,7 +1,9 @@
+version: '3.8'
+
 services:
   btc_address_dormant:
     build:
-      context: .
+      context: .  # Pastikan konteks menunjuk ke direktori saat ini
       dockerfile: Dockerfile
     container_name: btc_address_dormant
     deploy:
@@ -10,4 +12,7 @@ services:
           cpus: '15.0'
     volumes:
       - ./dormant.txt:/app/dormant.txt
-    command: python scanner.py
+    restart: always  # Tambahkan restart policy untuk stabilitas
+    environment:
+      - PYTHONUNBUFFERED=1  # Opsional: untuk output log yang lebih jelas
+    entrypoint: ["python", "scanner.py"]  # Menetapkan ulang entrypoint jika perlu
