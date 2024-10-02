@@ -1,12 +1,13 @@
 services:
-  btc_scanner:
+  btc_address_dormant:
     build:
-      context: .  # Gunakan Dockerfile yang ada di direktori saat ini
-    container_name: btc_scanner_dormant
-    volumes:
-      - ./data:/app/data  # Mount folder data di host ke /app/data di dalam container
+      context: .
+      dockerfile: Dockerfile
+    container_name: btc_address_dormant
     deploy:
       resources:
         limits:
-          cpus: '15.0'  # Alokasikan 15 core CPU
-    command: bash -c "python3 scanning.py"
+          cpus: '15.0'
+    volumes:
+      - ./dormant.txt:/app/dormant.txt
+    command: python scanner.py
