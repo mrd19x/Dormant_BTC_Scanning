@@ -2,7 +2,7 @@ services:
   btc_scanner:
     build:
       context: .  # Gunakan Dockerfile yang ada di direktori saat ini
-    container_name: btc_scanner
+    container_name: btc_scanner_dormant
     volumes:
       - ./data:/app/data  # Mount folder data di host ke /app/data di dalam container
     deploy:
