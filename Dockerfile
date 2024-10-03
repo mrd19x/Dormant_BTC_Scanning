@@ -1,22 +1,21 @@
-# Gunakan base image Python yang ringan
+# Gunakan image python 3.11 slim
 FROM python:3.11-slim
 
-# Setel direktori kerja di dalam container
+# Set working directory
 WORKDIR /app
 
-# Salin file requirements.txt ke direktori kerja
-COPY requirements.txt .
-
-# Update package manager dan install dependencies
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends gcc && \
-    pip install --no-cache-dir -r requirements.txt && \
-    apt-get remove -y gcc && \
-    apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
-
-# Salin semua file ke dalam container
+# Salin semua file dari direktori lokal ke dalam container
 COPY . .
 
-# Gunakan entrypoint untuk menjalankan script
-ENTRYPOINT ["python", "scanner.py"]
+# Instal dependencies yang diperlukan
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    build-essential \
+    libssl-dev && \
+    pip install --no-cache-dir coincurve rich pycryptodome && \
+    apt-get remove -y build-essential libssl-dev && \
+    apt-get autoremove -y && \
+    apt-get clean
+
+# Eksekusi script Python
+CMD ["python", "scanner.py"]

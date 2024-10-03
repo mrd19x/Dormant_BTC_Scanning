@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
     # Get user input for number of CPUs to use
     try:
-        cpu_count = int(input("Enter the number of CPU cores to use (1 to {}): ".format(multiprocessing.cpu_count())))
+        cpu_count = 15
         if cpu_count < 1 or cpu_count > multiprocessing.cpu_count():
             raise ValueError("Invalid CPU count")
     except ValueError as e:
