@@ -1,6 +1,5 @@
+coincurve
+rich
 pycryptodome
 bech32
 base58
-coincurve
-hashlib
-mmap
