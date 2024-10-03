@@ -1,8 +1,14 @@
-# Gunakan image python 3.11 slim
+# Gunakan image Python 3.11 slim sebagai base image
 FROM python:3.11-slim
 
-# Set working directory
+# Set direktori kerja di dalam container
 WORKDIR /app
+
+# Salin file requirements.txt ke dalam container
+COPY requirements.txt .
+
+# Instal dependencies menggunakan requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Salin semua file dari direktori lokal ke dalam container
 COPY . .
