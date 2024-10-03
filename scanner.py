@@ -85,7 +85,7 @@ def search_for_match(database, address_set, process_id, result_queue, rng_simula
         result_queue.put(match)
 
 if __name__ == '__main__':
-    file_path = 'Dormant.txt'
+    file_path = 'dormant.txt'
 
     # Get user input for number of CPUs to use
     try:
